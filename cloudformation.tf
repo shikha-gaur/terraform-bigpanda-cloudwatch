@@ -1,5 +1,5 @@
 resource "aws_cloudformation_stack" "trigger_codebuild_stack" {
-  count = var.subscribe_all ? 1 : 0
+  count = var.subscribe_all && daily_event_rule ? 1 : 0
   name = "trigger-codebuild-stack"
   parameters = {
     BigPandaLambdaFunctionArn = aws_lambda_function.bigpanda_lambda[0].arn
